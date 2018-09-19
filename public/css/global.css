@@ -1,0 +1,32 @@
+body {
+  background-image: url("https://i.pinimg.com/originals/52/7c/02/527c02710a3459f5c06f1364255b696c.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 20px;
+}
+
+.webcontent {
+  background-color: #F8F8F8;
+}
+
+.post {
+  outline-style: solid; 
+  outline-color:#E8E8E8; 
+  outline-width:2px;
+  padding: 20px;
+}
+
+.comment p{
+  display: inline;
+}
+
+.align-bottom-column {
+  position: absolute; 
+  bottom: 0;
+}
+
+.message {
+  border-radius: 25px; 
+  background-color: #F0F0F0;
+}

@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link href="/css/global.css" rel="stylesheet">
+    
+    <script src="/js/controllers/messageController.js"></script>
+  </head>
+  <body>
+    <div class="container webcontent" ng-app="messages" ng-controller="notificationsController">
+      <div ng-include=" '/views/nav.html' " ></div>
+      <br/>
+      <h2>Notifications</h2>
+      <br/>
+      <div class="row">
+        <div class="col-12">
+          <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
+          class="rounded-circle" width="50px" style="display: inline;">
+          <p style="display: inline; margin: 20px;">Jan 1 2018 12:30 AM EST</p>
+          <p style="display: inline; margin: 20px;">@roleplay_network this website is great</p>
+          <hr/>
+          <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
+          class="rounded-circle" width="50px" style="display: inline;">
+          <p style="display: inline; margin: 20px;">Jan 1 2018 12:30 AM EST</p>
+          <p style="display: inline; margin: 20px;">@roleplay_network this website is great</p>
+          <hr/>
+          <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
+          class="rounded-circle" width="50px" style="display: inline;">
+          <p style="display: inline; margin: 20px;">Jan 1 2018 12:30 AM EST</p>
+          <p style="display: inline; margin: 20px;">@roleplay_network this website is great</p>
+          <hr/>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link href="/css/global.css" rel="stylesheet">
+    
+    <script src="/js/controllers/accountController.js"></script>
+  </head>
+  <body>
+    <div class="container webcontent" ng-app="account" ng-controller="signupController">
+      <div ng-include=" '/views/nav.html' " ></div>
+      <br/>
+      <div class="row">
+        <div class="col-md-2 offset-md-5">
+          <h2>Sign Up</h2>
+          <br/>
+          <form name="signUpForm" ng-submit="createUser()">
+            <label>First Name</label>
+            <br/>
+            <input type="text" class="form-text" ng-model="newUser.fname" required> <br/>
+            <label>Last Name </label>
+            <br/>
+            <input type="text" class="form-text" ng-model="newUser.lname" required> <br/>
+            <label> Username </label>
+            <br/>
+            <input type="text" class="form-text" ng-model="newUser.username" required> <br/>
+            <label> Email </label>
+            <br/>
+            <input type="email" class="form-text" ng-model="newUser.email" required> <br/>
+            <label>Password </label>
+            <br/>
+            <input type="password" class="form-text" ng-model="newUser.password" required> <br/>
+            <label>Confirm Password </label>
+            <br/>
+            <input type="password" class="form-text" ng-model="newUser.passConfirm" required> <br/>
+            <center><input type="submit" value="Submit" class="btn btn-green"></center>
+          </form>
+        </div>
+      </div>
+      <br/>
+      <br/>
+      
+    </div>
+  </body>
+</html>
