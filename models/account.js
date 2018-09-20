@@ -13,12 +13,19 @@ module.exports = function(){
     fname: {type: String, required: true, trim: true},
     lname: {type: String, required: true, trim: true},
     username: {type: String, required: true, unique: true, trim: true},
-    img: {data: Buffer, contentType: String },
     email: {type: String, required: true, trim: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    date: { type: Date, default: Date.now },
+    accountType: String,  
+    posts: [{body:String, comments:[{owner:String, comment: String, date:Date}], likes:[{liker: String}], date: { type: Date, default: Date.now }}],
+    following: [{body: String}],
+    followers: [{body: String}],
+    notifications: [{owner: String, date: Date, post:Number}]
   });
 
   accountSchema.pre('save', function (next) {
+    if (!this.isModified('password')) return next();
+    
     var account = this;
     bcrypt.hash(account.password, 10, function (err, hash){
       if (err) {
@@ -43,7 +50,9 @@ module.exports = function(){
           if (result === true) {
             return callback(null, account);
           } else {
-            return callback();
+            err = new Error('Password is wrong');
+            err.status = 401
+            return callback(err);
           }
         })
       });

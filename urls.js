@@ -19,15 +19,18 @@ module.exports = (function() {
     resave: true,
     saveUninitialized: false}));
 
-  url.get('/',              (req, res) => { res.sendFile(__dirname + '/public/home.html'); });
-  url.get('/account/:id',   (req, res) => { res.sendFile(__dirname + '/public/account.html'); });
-  url.get('/explore',       (req, res) => { res.sendFile(__dirname + '/public/explore.html'); });
-  url.get('/inbox',         (req, res) => { res.sendFile(__dirname + '/public/inbox.html'); });
-  url.get('/message/:id',   (req, res) => { res.sendFile(__dirname + '/public/message.html'); });
-  url.get('/notifications', (req, res) => { res.sendFile(__dirname + '/public/notifications.html'); });
-  url.get('/view/:id',      (req, res) => { res.sendFile(__dirname + '/public/view.html'); });
-  url.get('/login',         (req, res) => { res.sendFile(__dirname + '/public/login.html'); });
-  url.get('/signup',        (req, res) => { res.sendFile(__dirname + '/public/signup.html'); });
-
+  url.get('/',                    (req, res) => { res.sendFile(__dirname + '/public/view.html'); });
+  url.get('/account',             (req, res) => { res.sendFile(__dirname + '/public/account.html'); });
+  url.get('/communication',       (req, res) => { res.sendFile(__dirname + '/public/communication.html'); });
+  url.get('/post',                (req, res) => { res.sendFile(__dirname + '/public/post.html'); });
+  
+  url.post('/api/signup',         (req, res) => { endpoint.api_signup(req, res); });
+  url.post('/api/login',          (req, res) => { endpoint.api_login(req, res); });
+  url.post('/api/logout',         (req, res) => { endpoint.api_logout(req, res); });
+  url.post('/api/checkAccount',   (req, res) => { endpoint.api_checkAccount(req, res); });
+  url.post('/api/getAccountData', (req, res) => { endpoint.api_getAccountData(req, res); });
+  url.post('/api/editAccount',    (req, res) => { endpoint.api_editAccount(req, res); });
+  url.post('/api/newPost',        (req, res) => { endpoint.api_newPost(req, res); });
+  
   return url;
 })();

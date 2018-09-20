@@ -5,7 +5,7 @@ var http = require('http').Server(app);
 var url = require('./urls.js');
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/shebang', { useNewUrlParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/rpnetwork', { useNewUrlParser: true });
 
 app.use(url);
 http.listen(3000, function(){
