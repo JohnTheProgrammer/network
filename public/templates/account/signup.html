@@ -1,0 +1,36 @@
+<div ng-include=" '/templates/nav.html' " ></div>
+<br/>
+<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+<div class="row">
+  <div class="col-md-2 offset-md-5">
+    <h2>Sign Up</h2>
+    <br/>
+    <form name="signUpForm" ng-submit="createUser()">
+      <label>First Name</label>
+      <br/>
+      <input type="text" class="form-text" ng-model="newUser.fname" required> <br/>
+      <label>Last Name </label>
+      <br/>
+      <input type="text" class="form-text" ng-model="newUser.lname" required> <br/>
+      <label> Username </label>
+      <br/>
+      <input type="text" class="form-text" ng-model="newUser.username" required> <br/>
+      <label> Email </label>
+      <br/>
+      <input type="email" class="form-text" ng-model="newUser.email" required> <br/>
+      <label> Bio </label>
+      <br/>
+      <textarea style="width: 90%; height:30%; border-radius: 10px; resize:none;" placeholder="Your post here" ng-model="newUser.bio"></textarea>
+      <br/>
+      <label>Password </label>
+      <br/>
+      <input type="password" class="form-text" ng-model="newUser.password" required> <br/>
+      <label>Confirm Password </label>
+      <br/>
+      <input type="password" class="form-text" ng-model="newUser.passConfirm" required> <br/>
+      <center><input type="submit" value="Submit" class="btn btn-green"></center>
+    </form>
+  </div>
+</div>
+<br/>
+<br/>

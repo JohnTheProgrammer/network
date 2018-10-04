@@ -31,6 +31,7 @@ module.exports = (function() {
   url.post('/api/getAccountData', (req, res) => { endpoint.api_getAccountData(req, res); });
   url.post('/api/editAccount',    (req, res) => { endpoint.api_editAccount(req, res); });
   url.post('/api/newPost',        (req, res) => { endpoint.api_newPost(req, res); });
+  url.post('/api/follow',         (req, res) => { endpoint.api_follow(req, res); })
   
   return url;
 })();

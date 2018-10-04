@@ -1,0 +1,22 @@
+<div ng-include=" '/templates/nav.html' " ></div>
+<div class="row">
+  <div class="col-md-10 offset-md-2 ">
+    <h2>Post</h2>
+    <br/>
+    <form name="postForm" ng-submit="newPost()">
+      <label>Type</label>
+      <br/>
+      <select ng-model="post.type" ng-init="post.type='personal'" required>
+        <option value="personal">Personal</option>
+        <option value="openRoleplay">Open Roleplay</option>
+        <option value="closedRoleplay">Closed Roleplay</option>
+        <option value="bio">Bio</option>
+      </select>
+      <br/>
+      <label>Text</label>
+      <br/>
+      <textarea style="width: 90%; height:30%; border-radius: 10px; resize:none;" placeholder="Your post here" ng-model="post.body" required></textarea>
+      <center><input type="submit" value="Submit" class="btn btn-green"></center>
+    </form>
+  </div>
+</div>

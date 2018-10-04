@@ -1,0 +1,115 @@
+<div ng-include=" '/templates/nav.html' " ></div>
+<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+<hr/>
+<div class="row">
+  <div class="col-md-4" style="overflow-wrap: break-word;">
+    <center style="background-color: #F0F0F0; border-radius: 10px;"> 
+      <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
+      class="rounded-circle" height="150px" width="150px"> 
+      <br/>
+      <div ng-if="currentAccount.username == account.username">
+        <button type="button" class="btn" style="margin: 10px; font-size: 30px;" ng-click="openModal()">Edit</button>
+        <button type="button" class="btn btn-danger" style="margin: 10px; font-size: 30px;" ng-click="logout()">Log Out</button>
+      </div>
+      <div ng-if="currentAccount.username != account.username">
+        <button type="button" class="btn btn-primary" style="margin: 10px; font-size: 30px;" ng-click="follow()">Follow</button>
+      </div>
+      <h1>{{account.username}}</h1>
+      <h3>{{account.fname}} {{account.lname}}</h3>
+      <p style="padding-bottom: 20px;">{{account.bio}}</p>
+    </center>
+    <center>
+      <h3>@following_generic</h3>
+      <hr/>
+      <h3>@following_generic</h3>
+      <hr/>
+      <h3>@following_generic</h3>
+      <hr/>
+      <h3>@following_generic</h3>
+    </center>
+  </div>
+  <div class="col-md-8" style="height:1000px; overflow-y: scroll">
+    <ul class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <center>
+            <h2>{{account.posts.length}}</h2>
+            <h3>Posts</h3>
+          </center>
+        </div>
+        <div class="col-sm-3">
+          <center>
+            <h2>{{account.followers.length}}</h2>
+            <h3>Followers</h3>
+          </center>
+        </div>
+        <div class="col-sm-3">
+          <center>
+            <h2>{{account.following.length}}</h2>
+            <h3>Following</h3>
+          </center>
+        </div>
+        <div class="col-sm-3">
+          <center>
+            <h2>200</h2>
+            <h3>Likes</h3>
+          </center>
+        </div>
+      </div>
+    </ul>
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav nav-fill w-100">
+          <li class="nav-item active">
+            <p>Feed <i class="fa fa-list" aria-hidden="true"></i></p>
+          </li>
+          
+          <li class="nav-item active">
+            <p>Role Plays <i class="fa fa-pencil" aria-hidden="true"></i></p>
+          </li>
+          
+          <li class="nav-item active">
+            <p>Bios <i class="fa fa-id-card-o" aria-hidden="true"></i></p>
+          </li>
+          
+          <li class="nav-item active">
+            <p>Gallery <i class="fa fa-picture-o" aria-hidden="true"></i></p> 
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <hr/>
+    <div>
+      <div ng-repeat="post in account.posts">
+        <div class="post">
+          <h2>{{post.owner}}</h2>
+          <hr/>
+          <center>
+            <p>{{post.body}} </p>
+          </center>
+          <p class="font-weight-bold"><i class="fa fa-heart-o" aria-hidden="true"></i> {{post.likes.length}}</p>
+          <form>
+            <input type="text" placeholder="Enter a comment" style="width: 75%;"><input type="submit" value="Submit">
+          </form>
+        </div>
+        <hr/>
+      </div>
+      <div class="post">
+        <h2>rp_network</h2>
+        <hr/>
+        <center>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim nulla ac malesuada sollicitudin. Aenean pulvinar mauris sapien. Sed eu augue metus. Vivamus eu convallis felis, et iaculis nibh. Integer ex quam, sagittis eget nulla id, ultricies pretium justo. Sed maximus finibus urna. Maecenas condimentum dictum magna quis consectetur. Morbi lobortis interdum erat, a aliquam nunc pharetra quis. Phasellus a ullamcorper libero. Fusce nec erat lorem. In auctor egestas ex, et dapibus massa semper ac. Fusce sit amet nulla dui. </p>
+        </center>
+        <p class="font-weight-bold"><i class="fa fa-heart-o" aria-hidden="true"></i> 22 Likes</p>
+        <form>
+          <input type="text" placeholder="Enter a comment" style="width: 75%;"><input type="submit" value="Submit">
+        </form>
+      </div>
+      <hr/>
+      <center>
+        <img src="https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg" class="img-responsive" style="max-width: 400px;">
+        <p>Generic Caption</p>
+      </center>
+    </div>
+  </div>
+</div>

@@ -13,13 +13,14 @@ module.exports = function(){
     fname: {type: String, required: true, trim: true},
     lname: {type: String, required: true, trim: true},
     username: {type: String, required: true, unique: true, trim: true},
+    bio: String,
     email: {type: String, required: true, trim: true},
     password: {type: String, required: true},
     date: { type: Date, default: Date.now },
     accountType: String,  
-    posts: [{body:String, comments:[{owner:String, comment: String, date:Date}], likes:[{liker: String}], date: { type: Date, default: Date.now }}],
-    following: [{body: String}],
-    followers: [{body: String}],
+    posts: [{body:String, owner: String, comments:[{owner:String, comment: String, date:Date}], likes:[{liker: String}], date: { type: Date, default: Date.now }}],
+    following: [{username: String}],
+    followers: [{username: String}],
     notifications: [{owner: String, date: Date, post:Number}]
   });
 

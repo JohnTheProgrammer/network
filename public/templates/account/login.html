@@ -1,0 +1,19 @@
+<div ng-include=" '/templates/nav.html' " ></div>
+<br/>
+<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+<div class="row">
+  <div class="col-md-2 offset-md-5">
+    <h2>Login</h2>
+    <br/>
+    <form name="loginForm" ng-submit="loginUser()">
+      <label> Username </label>
+      <br/>
+      <input type="text" class="form-text" ng-model="login.username" required> <br/>
+      <label>Password </label>
+      <br/>
+      <input type="password" class="form-text" ng-model="login.password" required> <br/>
+      <br/>
+      <center><input type="submit" value="Submit" class="btn btn-green"> </center>
+    </form>
+  </div>
+</div>

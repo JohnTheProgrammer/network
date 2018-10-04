@@ -1,5 +1,8 @@
 account
-    .controller('accountController', function($scope, $http, $window, $state, $uibModal){
+    .service('accountEditData', function(){
+      this.data;
+    })
+    .controller('accountController', function($scope, $http, $window, $state, $uibModal, accountEditData){
       $scope.openModal = (size) => {
         $scope.modalInstance = $uibModal.open({
           animation: true,
@@ -18,17 +21,26 @@ account
             throw res;
           }
         });
-      };
+      }
       
       $scope.alerts = [];
       
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
-      };
+      }
       
       $scope.checkAccount = () => {
         $http.post('/api/checkAccount').then((data) => {
           $scope.currentAccount = data.data;
+          console.log($scope.currentAccount);
+        });
+      }
+      
+      $scope.follow = () => {
+        $http.post('/api/follow', {'following': $state.params.id}).then((data) => {
+          $scope.checkAccount();
+          $scope.getAccountData();
+          console.log(data.data);
         });
       }
       
@@ -37,6 +49,7 @@ account
           if(typeof data.data == 'object' && data.data.status == 401){            
             $scope.alerts.push({type: 'danger', msg: `Account doesn't exist`});            
           }else{
+            accountEditData.data = data.data;
             $scope.account = data.data;
             console.log($scope.account);
           }
@@ -58,7 +71,9 @@ account
       $scope.init();
     })
     
-    .controller('editModalController', function($scope, $http,  $window, $uibModalInstance){
+    .controller('editModalController', function($scope, $http,  $window, $uibModalInstance, accountEditData){
+      $scope.editAccount = accountEditData.data;
+      
       $scope.closeModal = () => {
         $uibModalInstance.dismiss('cancel');
       }
