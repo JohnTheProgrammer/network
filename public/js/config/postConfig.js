@@ -5,9 +5,15 @@ post.config(function ($stateProvider, $urlRouterProvider){
 
     $stateProvider
 
-        .state('post', {
+        .state('create', {
             url: '/create',
             templateUrl: '/templates/post/create.html',
             controller: 'createController'
+        })
+        
+        .state('view', {
+          url: '/view/:account/:id',
+          templateUrl: '/templates/post/view.html',
+          controller: 'viewPostController'
         });
 });

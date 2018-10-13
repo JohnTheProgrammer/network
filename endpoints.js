@@ -43,7 +43,7 @@ module.exports = (function(){
           res.send(err);
           return err;
         }else{
-          res.json({'username': account.username, 'fname': account.fname, 'lname': account.lname, 'post': account.post, 'following': account.following, 'followers': account.followers});
+          res.json({'username': account.username, 'fname': account.fname, 'lname': account.lname, 'post': account.post, 'following': account.following, 'followers': account.followers, 'email': account.email, 'bio': account.bio});
         }        
       });
     },
@@ -77,9 +77,61 @@ module.exports = (function(){
         if (err || !account){
           res.send(err);
         }else{
-          account.posts.push({body: req.body.body, owner:req.session.accountid});
+          console.log('post type ' + req.body.type);
+          account.posts.push({body: req.body.body, owner:req.session.accountid, postType: req.body.type});
           account.save(function(err){});
           return res.send('/account#!/' + req.session.accountid);
+        }
+      });
+    },
+    
+    api_getPost: function(req, res){
+      account.findOne({ 'username': req.body.account}, function(err, account){
+        if( err|| !account){
+          res.send(err);
+        }else{
+          var post = account.posts.id(req.body.id);
+          return res.send(post);
+        }
+      });
+    },
+    
+    api_editPost: function(req, res){
+      account.findOne({ 'username': req.body.owner}, function(err, account){
+        if( err|| !account){
+          res.send(err);
+        }else{
+          var post = account.posts.id(req.body._id);
+          post.postType = req.body.type;
+          post.body = req.body.body;
+          account.save(function(err){
+            if(err){ 
+              console.log(err);
+            }else{
+              console.log('success');
+            }
+          });
+          res.send('successful');
+        }
+      });
+    },
+    
+    api_deletePost: function(req, res){
+      account.findOne({ 'username': req.body.account}, function(err, account){
+        if(err || !account){
+          console.log('did not find account');
+          res.send(err);
+        }else{
+          console.log('found account');
+          account.posts.id(req.body.id).remove();
+          account.save(function(err){
+            if(err){ 
+              console.log(err);
+            }else{
+              console.log('success');
+            }
+          });
+          res.send('/account#!/' + req.body.account);
         }
       });
     },
@@ -141,6 +193,28 @@ module.exports = (function(){
       }
       
       return res.send('success');
+    },
+    
+    api_comment: function(req, res){
+      console.log(req.session.accountid);
+      if(req.session.accountid != undefined && req.session.accountid != ''){
+        account.findOne({'username': req.body.postOwner}, function(err, account){
+          if( err || !account){
+            console.log('error or account not found');
+          }else{
+            var post = account.posts.id(req.body.id);
+            post.comments.push({owner: req.session.accountid, comment: req.body.comment, date: Date.now()});
+            account.save(function(err){
+              if(err){
+                console.log(err);
+              }else{
+                console.log('success');
+              }
+            });
+          }
+        });
+      }
+      return res.send('test');
     }
   }
   return endpoints;

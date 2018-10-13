@@ -11,12 +11,6 @@ view.config(function ($stateProvider, $urlRouterProvider){
             controller: 'homeController'
         })
 
-        .state('single', {
-            url:'/single/:account/:id',
-            templateUrl: '/templates/view/single.html',
-            controller: 'viewController'
-        })
-
         .state('explore', {
             url: '/explore',
             templateUrl: '/templates/view/explore.html',

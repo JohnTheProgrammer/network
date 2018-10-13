@@ -18,10 +18,11 @@ module.exports = function(){
     password: {type: String, required: true},
     date: { type: Date, default: Date.now },
     accountType: String,  
-    posts: [{body:String, owner: String, comments:[{owner:String, comment: String, date:Date}], likes:[{liker: String}], date: { type: Date, default: Date.now }}],
+    posts: [{body:String, owner: String, postType: String, comments:[{owner:String, comment: String, date:Date}], likes:[{liker: String}], date: { type: Date, default: Date.now }}],
     following: [{username: String}],
     followers: [{username: String}],
-    notifications: [{owner: String, date: Date, post:Number}]
+    notifications: [{owner: String, date: Date, post:Number}],
+    messages: [{to: String, date: Date, message: String}]
   });
 
   accountSchema.pre('save', function (next) {

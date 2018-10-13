@@ -1,46 +1,57 @@
 account
-    .service('accountEditData', function(){
-      this.data;
-    })
-    .controller('accountController', function($scope, $http, $window, $state, $uibModal, accountEditData){
-      $scope.openModal = (size) => {
+    .controller('accountController', function($scope, $http, $window, $state, $uibModal){
+      $scope.openModal = (account) => {
         $scope.modalInstance = $uibModal.open({
           animation: true,
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
-          templateUrl: '/templates/editModal.html',
+          templateUrl: '/templates/account/editModal.html',
           controller: 'editModalController',
-          size: size,
           resolve: {
-            modalData: function () {
-              return $scope.modalData;
+            accountData: function(){
+              return account;
             }
           }
         }).result.catch(function(res) {
-          if (!(res === 'cancel' || res === 'escape key press' || 'backdrop click')) {
-            throw res;
-          }
+          $scope.checkAccount();
+          $scope.getAccountData();
         });
       }
       
       $scope.alerts = [];
       
-      $scope.closeAlert = function(index) {
+      $scope.closeAlert = (index) => {
         $scope.alerts.splice(index, 1);
       }
       
       $scope.checkAccount = () => {
         $http.post('/api/checkAccount').then((data) => {
-          $scope.currentAccount = data.data;
-          console.log($scope.currentAccount);
+          if(typeof data.data == 'object' && data.data.status == 401){            
+                        
+          }else{
+            $scope.currentAccount = data.data;
+            console.log($scope.currentAccount);
+          }
         });
       }
       
       $scope.follow = () => {
         $http.post('/api/follow', {'following': $state.params.id}).then((data) => {
+          $window.location.reload();
+          console.log(data.data);
+        });
+      }
+      
+      $scope.viewPost = (id) => {
+        $window.location.href = '/post#!/view/' + $scope.account.username + '/' + id
+      }
+      
+      $scope.comment = (id, postOwner) => {
+        $http.post('/api/comment', {'id': id, 'comment': $scope.commentPost, 'postOwner': postOwner}).then((data) => {
+          $scope.commentPost = '';
+          console.log(data.data);
           $scope.checkAccount();
           $scope.getAccountData();
-          console.log(data.data);
         });
       }
       
@@ -49,8 +60,23 @@ account
           if(typeof data.data == 'object' && data.data.status == 401){            
             $scope.alerts.push({type: 'danger', msg: `Account doesn't exist`});            
           }else{
-            accountEditData.data = data.data;
+            $scope.isFollowing = false;
             $scope.account = data.data;
+            if($scope.currentAccount != undefined){
+              $scope.currentAccount.following.forEach(function(following){
+                if(following.username == $scope.account.username){
+                  $scope.isFollowing = true;
+                }
+              });
+            }
+            $scope.account.posts.sort(function(a, b){
+              return new Date(b.date) - new Date(a.date);
+            });
+            $scope.account.posts.forEach(function(post){
+              post.comments.sort(function(a, b){
+                return new Date(b.date) - new Date(a.date);
+              });
+            });
             console.log($scope.account);
           }
         });
@@ -71,8 +97,8 @@ account
       $scope.init();
     })
     
-    .controller('editModalController', function($scope, $http,  $window, $uibModalInstance, accountEditData){
-      $scope.editAccount = accountEditData.data;
+    .controller('editModalController', function($scope, $http,  $window, $uibModalInstance, accountData){
+      $scope.editAccount = accountData;
       
       $scope.closeModal = () => {
         $uibModalInstance.dismiss('cancel');
@@ -82,8 +108,8 @@ account
         console.log($scope.editAccount);
         $http.post('/api/editAccount', $scope.editAccount).then((data) => {
           $window.location.href = data.data;
-          $scope.closeModal();
         });
+        $scope.closeModal();
       }
     })
     

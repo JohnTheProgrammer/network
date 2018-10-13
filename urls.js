@@ -31,7 +31,11 @@ module.exports = (function() {
   url.post('/api/getAccountData', (req, res) => { endpoint.api_getAccountData(req, res); });
   url.post('/api/editAccount',    (req, res) => { endpoint.api_editAccount(req, res); });
   url.post('/api/newPost',        (req, res) => { endpoint.api_newPost(req, res); });
-  url.post('/api/follow',         (req, res) => { endpoint.api_follow(req, res); })
+  url.post('/api/deletePost',     (req, res) => { endpoint.api_deletePost(req, res); });
+  url.post('/api/editPost',       (req, res) => { endpoint.api_editPost(req, res); })
+  url.post('/api/getPost',        (req, res) => { endpoint.api_getPost(req, res); });
+  url.post('/api/follow',         (req, res) => { endpoint.api_follow(req, res); });
+  url.post('/api/comment',        (req, res) => { endpoint.api_comment(req, res); });
   
   return url;
 })();
