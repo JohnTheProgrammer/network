@@ -2,16 +2,26 @@
 <center>
   <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
   class="rounded-circle" width="100px">
-  <h3>messaging_user</h3>
+  <h3>{{messaging}}</h3>
   <hr/>
 </center>
-<div class="float-left message">
-  <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
-  class="rounded-circle" width="50px" style="display: inline;">
-  <p style="display: inline;">This is a message</p>
+<div ng-repeat="message in messages">
+  <div ng-if="message.to == currentAccount.username" class="float-left message">
+    <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
+    class="rounded-circle" width="50px" style="display: inline;">
+    <p style="display: inline;">{{message.message}}</p>
+  </div>
+  
+  <div ng-if="message.to == messaging" class="float-right message">
+    <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
+    class="rounded-circle" width="50px" style="display: inline;">
+    <p style="display: inline;">{{message.message}}</p>
+  </div>
+  <br/>
+  <br/>
 </div>
-<br/>
-<br/>
+
+<!--
 <div class="float-right message">
   <p style="display: inline;">This is a message</p>
 </div>
@@ -77,6 +87,7 @@
 </div>
 <br/>
 <br/>
+-->
 <form>
-  <textarea style="width: 90%; height:15%; border-radius: 10px; resize:none;" placeholder="Your message here"></textarea><p class="text-primary" style="display: inline-block; vertical-align:middle;">Send</p>
+  <textarea style="width: 90%; height:15%; border-radius: 10px; resize:none;" placeholder="Your message here" ng-model="message"></textarea><p class="text-primary" style="display: inline-block; vertical-align:middle; cursor: pointer;" ng-click="sendMessage()">Send</p>
 </form>

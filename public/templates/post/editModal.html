@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Edit Account</h3>
+    <span class="close" style="float: right;" ng-click="closeModal()">&times;</span>
+</div>
+
+<div class="modal-body" id="modal-body">
+  <form name="postForm" ng-submit="submitEditPost()">
+    <label>Type</label>
+    <br/>
+    <select ng-model="editPost.type" required>
+      <option value="personal">Personal</option>
+      <option value="openRoleplay">Open Roleplay</option>
+      <option value="closedRoleplay">Closed Roleplay</option>
+      <option value="bio">Bio</option>
+    </select>
+    <br/>
+    <label> Post Image (URL)</label>
+    <input type="text" class="form-text" ng-model="editPost.image"> <br/>
+    <label>Text</label>
+    <br/>
+    <textarea style="width: 90%; height:30%; border-radius: 10px; resize:none;" placeholder="Your post here" ng-model="editPost.body" required></textarea>
+    <center><button type="button" class="btn btn-danger" ng-click="deletePost()">Delete Post</button></center>
+    <center><input type="submit" value="Submit" class="btn btn-green"></center>
+  </form>
+</div>

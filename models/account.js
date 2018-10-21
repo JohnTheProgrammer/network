@@ -12,16 +12,18 @@ module.exports = function(){
   var accountSchema = new Schema({
     fname: {type: String, required: true, trim: true},
     lname: {type: String, required: true, trim: true},
+    pfp: String,
     username: {type: String, required: true, unique: true, trim: true},
     bio: String,
     email: {type: String, required: true, trim: true},
     password: {type: String, required: true},
     date: { type: Date, default: Date.now },
     accountType: String,  
-    posts: [{body:String, owner: String, postType: String, comments:[{owner:String, comment: String, date:Date}], likes:[{liker: String}], date: { type: Date, default: Date.now }}],
+    posts: [{body:String, owner: String, postType: String, image:String, comments:[{owner:String, comment: String, date:Date}], likes:[{liker: String}], date: { type: Date, default: Date.now }}],
     following: [{username: String}],
     followers: [{username: String}],
-    notifications: [{owner: String, date: Date, post:Number}],
+    seenNotifs: Boolean,
+    notifications: [{owner: String, ownerpfp: String, date: Date, post: String, postOwner: String, body: String}],
     messages: [{to: String, date: Date, message: String}]
   });
 

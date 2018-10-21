@@ -4,8 +4,7 @@
 <div class="row">
   <div class="col-md-4" style="overflow-wrap: break-word;">
     <center style="background-color: #F0F0F0; border-radius: 10px;"> 
-      <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
-      class="rounded-circle" height="150px" width="150px"> 
+      <img ng-src="{{account.pfp}}" class="rounded-circle" height="150px" width="150px"> 
       <br/>
       <div ng-if="currentAccount.username == account.username">
         <button type="button" class="btn" style="margin: 10px; font-size: 30px;" ng-click="openModal(currentAccount)">Edit</button>
@@ -20,13 +19,11 @@
       <p style="padding-bottom: 20px;">{{account.bio}}</p>
     </center>
     <center>
-      <h3>@following_generic</h3>
+      <h3>Following</h3>
       <hr/>
-      <h3>@following_generic</h3>
-      <hr/>
-      <h3>@following_generic</h3>
-      <hr/>
-      <h3>@following_generic</h3>
+      <div ng-repeat="following in account.following">
+        <a ng-if="$index<4" ng-href="/account#!/{{following.username}}">{{following.username}}</a>
+      </div>
     </center>
   </div>
   <div class="col-md-8" style="height:1000px; overflow-y: scroll">
@@ -89,10 +86,10 @@
           <h3>{{post.postType}}</h3>
           <hr/>
           <center ng-click="viewPost(post._id)">
-            <!--img tag goes here-->
+            <img ng-if="post.image != undefined && post.image != ''" ng-src="{{post.image}}" style="max-width:400px;"/>
             <p>{{post.body}} </p>
           </center>
-          <p class="font-weight-bold"><i class="fa fa-heart-o" aria-hidden="true"></i> {{post.likes.length}}</p>
+          <p class="font-weight-bold"><i class="fa fa-heart-o" aria-hidden="true" ng-click="likePost(post._id, post.owner)"></i> {{post.likes.length}}</p>
           <div ng-repeat="comment in post.comments">
             <div ng-if="$index<3" style="display:flex;"><h5>{{comment.owner}}</h5><p>:{{comment.comment}}</p></div>
           </div>

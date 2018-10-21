@@ -1,0 +1,23 @@
+<div ng-include=" '/templates/nav.html' " ></div>
+<br/>
+<br/>
+<br/>
+<div class="row">
+  <div class="post col-md-8 webcontent">
+    <h2 style="display: inline;">{{post.owner}}</h2>    
+    <button style="display: inline; float: right;" ng-if="currentAccount.username == post.owner" ng-click="openModal(post)">Edit</button>
+    <h3>{{post.postType}}</h3>
+    <hr/>
+    <center>
+      <img ng-if="post.image != undefined && post.image != ''" ng-src="{{post.image}}" style="max-width:700px;"/>
+      <p>{{post.body}} </p>
+    </center>
+    <p class="font-weight-bold"><i class="fa fa-heart-o" aria-hidden="true" ng-click="likePost(post._id, post.owner)"></i> {{post.likes.length}}</p>
+  </div>
+  <div class="col-md-4 post webcontent" style="overflow-y: scroll; height: 600px;">
+    <div ng-repeat="comment in post.comments">
+      <div style="display:flex;"><p><h5>{{comment.owner}}</h5>:{{comment.comment}}</p></div>
+    </div>
+    <input type="text" placeholder="Enter a comment" style="width: 75%;" ng-model="$parent.commentPost"><button ng-click="comment(post._id, post.owner)">Submit</button>
+  </div>
+</div>

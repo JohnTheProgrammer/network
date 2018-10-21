@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Edit Account</h3>
+    <span class="close" style="float: right;" ng-click="closeModal()">&times;</span>
+</div>
+
+<div class="modal-body" id="modal-body">
+  <form name="signUpForm" ng-submit="editAccountFunc()">
+    <label> Profile Picture (URL)</label>
+    <br/>
+    <input type="text" class="form-text" ng-model="editAccount.pfp"> <br/>
+    <label>First Name</label>
+    <br/>
+    <input type="text" class="form-text" ng-model="editAccount.fname" required> <br/>
+    <label>Last Name </label>
+    <br/>
+    <input type="text" class="form-text" ng-model="editAccount.lname" required> <br/>
+    <label> Username </label>
+    <br/>
+    <input type="text" class="form-text" ng-model="editAccount.username" required> <br/>
+    <label> Email </label>
+    <br/>
+    <input type="text" class="form-text" ng-model="editAccount.email" required> <br/>
+    <label> Bio </label>
+    <br/>
+    <textarea style="width: 90%; height:30%; border-radius: 10px; resize:none;" placeholder="Your post here" ng-model="editAccount.bio" required></textarea> <br/>
+    <center><input type="submit" value="Submit" class="btn btn-green"></center>
+  </form>
+</div>

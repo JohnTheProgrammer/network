@@ -12,6 +12,7 @@ post
       }
       
       $scope.newPost = () => {
+        //$scope.accountsTagged = $scope.post.body.match(/@[a-z]+/gi);
         $http.post('/api/newPost', $scope.post).then((data) => {
           $window.location.href = data.data;
         });
@@ -50,6 +51,12 @@ post
         });
       }
       
+      $scope.likePost = (id, owner) => {
+        $http.post('/api/likePost', {'id': id, 'account': owner}).then((data) => {
+          $scope.getPost();
+        });
+      }
+      
       $scope.getPost = () => {
         $http.post('/api/getPost', {'id': $state.params.id, 'account': $state.params.account}).then((data) => {
           $scope.post = data.data;
@@ -84,8 +91,8 @@ post
       $scope.submitEditPost = () => {
         $http.post('/api/editPost', $scope.editPost).then((data) => {
           console.log(data.data);
+          $scope.closeModal();
         });
-        $scope.closeModal();
       }
       
       $scope.deletePost = () => {

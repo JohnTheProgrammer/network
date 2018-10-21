@@ -2,7 +2,17 @@
 <br/>
 <h2>Notifications</h2>
 <br/>
-<div class="row">
+<div ng-repeat="notification in notifications">
+  <div class="col-12">
+    <img ng-src="{{notification.ownerpfp}}" 
+    class="rounded-circle" width="50px" style="display: inline;">
+    <p style="display: inline; margin: 20px;">{{notification.date}}</p>
+    <p style="display: inline; margin: 20px;">Tagged by <a ng-href="/post#!/view/{{notification.postOwner}}/{{notification.post}}">{{notification.owner}}<a/></p>
+    <p style="display: inline; margin: 20px;">{{notification.body}}</p>
+    <hr/>
+  </div>
+</div>
+  <!--
   <div class="col-12">
     <img src="http://mainenordmenn.com/wp-content/uploads/2017/09/Maine-Nordmenn-Board-Generic-Profile.jpg" 
     class="rounded-circle" width="50px" style="display: inline;">
@@ -21,3 +31,4 @@
     <hr/>
   </div>
 </div>
+  -->

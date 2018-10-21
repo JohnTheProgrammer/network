@@ -19,23 +19,26 @@ module.exports = (function() {
     resave: true,
     saveUninitialized: false}));
 
-  url.get('/',                    (req, res) => { res.sendFile(__dirname + '/public/view.html'); });
-  url.get('/account',             (req, res) => { res.sendFile(__dirname + '/public/account.html'); });
-  url.get('/communication',       (req, res) => { res.sendFile(__dirname + '/public/communication.html'); });
-  url.get('/post',                (req, res) => { res.sendFile(__dirname + '/public/post.html'); });
+  url.get('/',                        (req, res, next) => { res.sendFile(__dirname + '/public/view.html'); });
+  url.get('/account',                 (req, res, next) => { res.sendFile(__dirname + '/public/account.html'); });
+  url.get('/communication',           (req, res, next) => { res.sendFile(__dirname + '/public/communication.html'); });
+  url.get('/post',                    (req, res, next) => { res.sendFile(__dirname + '/public/post.html'); });
   
-  url.post('/api/signup',         (req, res) => { endpoint.api_signup(req, res); });
-  url.post('/api/login',          (req, res) => { endpoint.api_login(req, res); });
-  url.post('/api/logout',         (req, res) => { endpoint.api_logout(req, res); });
-  url.post('/api/checkAccount',   (req, res) => { endpoint.api_checkAccount(req, res); });
-  url.post('/api/getAccountData', (req, res) => { endpoint.api_getAccountData(req, res); });
-  url.post('/api/editAccount',    (req, res) => { endpoint.api_editAccount(req, res); });
-  url.post('/api/newPost',        (req, res) => { endpoint.api_newPost(req, res); });
-  url.post('/api/deletePost',     (req, res) => { endpoint.api_deletePost(req, res); });
-  url.post('/api/editPost',       (req, res) => { endpoint.api_editPost(req, res); })
-  url.post('/api/getPost',        (req, res) => { endpoint.api_getPost(req, res); });
-  url.post('/api/follow',         (req, res) => { endpoint.api_follow(req, res); });
-  url.post('/api/comment',        (req, res) => { endpoint.api_comment(req, res); });
-  
+  url.post('/api/signup',             (req, res, next) => { endpoint.api_signup(req, res); });
+  url.post('/api/login',              (req, res, next) => { endpoint.api_login(req, res); });
+  url.post('/api/logout',             (req, res, next) => { endpoint.api_logout(req, res); });
+  url.post('/api/checkAccount',       (req, res, next) => { endpoint.api_checkAccount(req, res); });
+  url.post('/api/getAccountData',     (req, res, next) => { endpoint.api_getAccountData(req, res); });
+  url.post('/api/editAccount',        (req, res, next) => { endpoint.api_editAccount(req, res); });
+  url.post('/api/newPost',            (req, res, next) => { endpoint.api_newPost(req, res); });
+  url.post('/api/deletePost',         (req, res, next) => { endpoint.api_deletePost(req, res); });
+  url.post('/api/editPost',           (req, res, next) => { endpoint.api_editPost(req, res); })
+  url.post('/api/getPost',            (req, res, next) => { endpoint.api_getPost(req, res); });
+  url.post('/api/likePost',           (req, res, next) => { endpoint.api_likePost(req, res); });
+  url.post('/api/follow',             (req, res, next) => { endpoint.api_follow(req, res); });
+  url.post('/api/comment',            (req, res, next) => { endpoint.api_comment(req, res); });
+  url.post('/api/message',            (req, res, next) => { endpoint.api_message(req, res); });
+  url.post('/api/getMessages',        (req, res, next) => { endpoint.api_getMessages(req, res); });
+  url.post('/api/getNotification', (req, res, next) => { endpoint.api_getNotification(req, res)})
   return url;
 })();

@@ -14,13 +14,13 @@
       <input type="text" class="form-text" ng-model="newUser.lname" required> <br/>
       <label> Username </label>
       <br/>
-      <input type="text" class="form-text" ng-model="newUser.username" required> <br/>
+      <input type="text" class="form-text" ng-model="newUser.username" pattern="^[_A-z0-9]*((-|\s)*[_A-z0-9])*$" placeholder="No Special Characters" required> <br/>
       <label> Email </label>
       <br/>
       <input type="email" class="form-text" ng-model="newUser.email" required> <br/>
       <label> Bio </label>
       <br/>
-      <textarea style="width: 90%; height:30%; border-radius: 10px; resize:none;" placeholder="Your post here" ng-model="newUser.bio"></textarea>
+      <textarea style="height:200px; border-radius: 10px; resize:none;" placeholder="Your post here" ng-model="newUser.bio"></textarea>
       <br/>
       <label>Password </label>
       <br/>

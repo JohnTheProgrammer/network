@@ -37,7 +37,7 @@ account
       
       $scope.follow = () => {
         $http.post('/api/follow', {'following': $state.params.id}).then((data) => {
-          $window.location.reload();
+          $scope.getAccountData();
           console.log(data.data);
         });
       }
@@ -46,11 +46,17 @@ account
         $window.location.href = '/post#!/view/' + $scope.account.username + '/' + id
       }
       
+      $scope.likePost = (id, owner) => {
+        $http.post('/api/likePost', {'id': id, 'account': owner}).then((data) => {
+          $scope.getAccountData();
+          console.log(data.data);
+        });
+      }
+      
       $scope.comment = (id, postOwner) => {
         $http.post('/api/comment', {'id': id, 'comment': $scope.commentPost, 'postOwner': postOwner}).then((data) => {
           $scope.commentPost = '';
           console.log(data.data);
-          $scope.checkAccount();
           $scope.getAccountData();
         });
       }
@@ -106,10 +112,9 @@ account
       
       $scope.editAccountFunc = () => {
         console.log($scope.editAccount);
-        $http.post('/api/editAccount', $scope.editAccount).then((data) => {
-          $window.location.href = data.data;
+        $http.post('/api/editAccount', $scope.editAccount).then((data)=>{
+          $scope.closeModal();
         });
-        $scope.closeModal();
       }
     })
     

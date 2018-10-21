@@ -12,7 +12,7 @@ communication.config(function ($stateProvider, $urlRouterProvider){
         })
 
         .state('message', {
-            url:'/message',
+            url:'/message/:id',
             templateUrl: '/templates/communication/message.html',
             controller: 'messageController'
         })
